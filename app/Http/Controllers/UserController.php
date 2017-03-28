@@ -56,19 +56,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'display_name' => 'required', 'description' => 'required', ]);
+        $this->validate($request, ['name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'role' => 'required',
+        ]);
+        if($request->password){
+            $request->merge(['password' => bcrypt($request->password)]);
+        }
 
         User::create($request->all());
 
-        /*foreach ($request->input('permissions') as $key => $value) {
-            DB::table('permission_role')->insertGetId(
-                ['permission_id' => $value, 'role_id' => $id]
-            );
-        }*/
-
         Session::flash('flash_message', 'User added!');
 
-        return redirect('roles');
+        return redirect('users');
     }
 
     /**
@@ -80,8 +81,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrFail($id);
-        return view('user.show')->with('user',$user);
+        $roles = Role::pluck('display_name','id');
+        return view('user.show')->with('roles',$roles);
     }
 
     /**
@@ -94,7 +95,14 @@ class UserController extends Controller
     public function edit($id)
     {
         $users = User::findOrFail($id);
-        return view('user.edit')->with('user',$users);
+        $roles = Role::pluck('display_name','id');
+
+        $rol_user = DB::table('role_user')->where('user_id', '=', $id)->get();
+
+        return view('user.edit')
+            ->with('rol_user',$rol_user[0])
+            ->with('roles',$roles)
+            ->with('users',$users);
     }
 
     /**
@@ -106,10 +114,22 @@ class UserController extends Controller
      */
     public function update($id, Request $request)
     {
-        $this->validate($request, ['name' => 'required', 'display_name' => 'required', 'description' => 'required', ]);
+        $this->validate($request, ['name' => 'required',
+            'email' => 'required',
+            'role' => 'required',
+        ]);
+        if (empty($request->get('password'))) {
+            $data = $request->except('password');
+        } else {
+            $data = $request->all();
+        }
 
+        DB::table('role_user')->where('user_id', '=', $id)->delete();
+        DB::table('role_user')->insertGetId(
+            ['user_id' => $id, 'role_id' => $request->get('role')]
+        );
         $user = User::findOrFail($id);
-        $user->update($request->all());
+        $user->update($data);
 
         Session::flash('flash_message', 'User updated!');
 

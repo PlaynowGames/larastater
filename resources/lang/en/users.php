@@ -15,6 +15,7 @@ return [
     'This section is empty' => 'This section is empty',
     'Actions' => 'Actions',
     'Roles' => 'Roles',
+    'usuarios' => 'Usuários',
     'Permissions' => 'Permissions',
     'name' => 'Name',
     'email' => 'Email',

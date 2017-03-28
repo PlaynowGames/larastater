@@ -46,7 +46,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><img src="{{asset('images/logo.png')}}" width="95"></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -336,22 +336,28 @@
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
         @include('partials.menu.items', ['items'=> $menu_example->roots()])
+        @role('admin')
         <li class="header">ADMINISTRATOR</li>
         <li>
           <a href="/roles">
-            <i class="fa fa-th"></i> <span>Add Roles</span>
+            <i class="fa fa-th"></i> <span>Roles</span>
           </a>
         </li>
+        @endif
+        @role('admin')
         <li>
           <a href="/permissions">
-            <i class="fa fa-th"></i> <span>Add Permission</span>
+            <i class="fa fa-th"></i> <span>Permission</span>
           </a>
         </li>
+        @endif
+        @role('admin')
         <li>
           <a href="/users">
-            <i class="fa fa-th"></i> <span>Add Users</span>
+            <i class="fa fa-th"></i> <span>Users</span>
           </a>
         </li>
+        @endif
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -367,7 +373,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.3.8
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2016 <a href="http://www.fdcsistemas.com.br">FDC Sistemas</a>.</strong> All rights
     reserved.
   </footer>
 

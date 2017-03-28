@@ -1,6 +1,4 @@
 
-
-
 @foreach($items as $item)
 
     @permission('access-'.$item->slug)

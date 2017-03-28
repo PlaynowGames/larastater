@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Role;
 use App\Permission;
+use App\PermissionRole;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Session;
@@ -81,8 +82,8 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        $lancamento = Role::findOrFail($id);
-        return view('roles.show')->with('lancamento',$lancamento);
+        $role = Role::findOrFail($id);
+        return view('roles.show')->with('role',$role);
     }
 
     /**
@@ -95,7 +96,11 @@ class RoleController extends Controller
     public function edit($id)
     {
         $roles = Role::findOrFail($id);
-        return view('roles.edit')->with('roles',$roles);
+        $permissions = Permission::all();
+
+        return view('roles.edit')
+        ->with('permissions',$permissions)
+        ->with('roles',$roles);
     }
 
     /**
@@ -109,8 +114,19 @@ class RoleController extends Controller
     {
         $this->validate($request, ['name' => 'required', 'display_name' => 'required', 'description' => 'required', ]);
 
-        $lancamento = Role::findOrFail($id);
-        $lancamento->update($request->all());
+        $role = Role::findOrFail($id);
+        $role->update($request->all());
+        PermissionRole::where('role_id', '=', $id)->delete();
+
+
+
+        if(count($request->input('permissions')) > 0){
+            foreach ($request->input('permissions') as $key => $value) {
+                DB::table('permission_role')->insertGetId(
+                    ['permission_id' => $value, 'role_id' => $id]
+                );
+            }
+        }
 
         Session::flash('flash_message', 'Role updated!');
 

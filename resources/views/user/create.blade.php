@@ -38,17 +38,10 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('roles') ? 'has-error' : ''}}">
                 {!! Form::label('Roles', trans('users.Roles'), ['class' => 'col-md-2 control-label']) !!}
                 <div class="col-md-10">
-                    @foreach ($roles as $role)
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="roles[]" value="{{ $role->id }}">
-                                {{ $role->display_name }}
-                            </label>
-                        </div>
-                    @endforeach
+                {!! Form::select('role', $roles, null, ['class' => 'form-control', 'required' => 'required']); !!}
                 </div>
             </div>
 

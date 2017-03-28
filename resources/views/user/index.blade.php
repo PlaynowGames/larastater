@@ -5,7 +5,7 @@
 <section class="content">
   <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">{{trans('users.Roles')}}</h3>
+      <h3 class="box-title">{{trans('users.usuarios')}}</h3>
       <div class="box-tools">
         <a href="{{ url('/users/create') }}" class="btn btn-success btn-sm" title="Add New Usuário"><span class="glyphicon glyphicon-plus" aria-hidden="true"/></a>
       </div>
@@ -28,17 +28,12 @@
                 <a href="{{url('/users?order_by=nome&order_direct=desc')}}" class="btn btn-default btn-xs @if($order_by=='nome' and $order_direct=='desc') disabled @endif"><i class="fa fa-caret-up"></i></a>
                 <a href="{{url('/users?order_by=nome&order_direct=asc')}}" class="btn btn-default btn-xs @if($order_by=='nome' and $order_direct=='asc') disabled @endif"><i class="fa fa-caret-down"></i></a>
               </div>
-          </th><th> {{ trans('users.Display Name') }}
+          </th><th> {{ trans('users.email') }}
               <div class="btn-group pull-right">
                 <a href="{{url('/users?order_by=data&order_direct=desc')}}" class="btn btn-default btn-xs @if($order_by=='data' and $order_direct=='desc') disabled @endif"><i class="fa fa-caret-up"></i></a>
                 <a href="{{url('/users?order_by=data&order_direct=asc')}}" class="btn btn-default btn-xs @if($order_by=='data' and $order_direct=='asc') disabled @endif"><i class="fa fa-caret-down"></i></a>
               </div>
-          </th><th> {{ trans('users.Description') }}
-              <div class="btn-group pull-right">
-                <a href="{{url('/users?order_by=valor&order_direct=desc')}}" class="btn btn-default btn-xs @if($order_by=='valor' and $order_direct=='desc') disabled @endif"><i class="fa fa-caret-up"></i></a>
-                <a href="{{url('/users?order_by=valor&order_direct=asc')}}" class="btn btn-default btn-xs @if($order_by=='valor' and $order_direct=='asc') disabled @endif"><i class="fa fa-caret-down"></i></a>
-              </div>
-            </th>
+          </th>
               <th class="text-right" style="min-width: 150px;">{{trans('users.Actions')}}</th>
           </tr>
         </thead>
@@ -48,8 +43,7 @@
             <tr>
                 <td @if($order_by == 'id') class="active" @endif>{{ $item->id }}</td>
                 <td @if($order_by == 'name') class="active" @endif>{{ $item->name }}</td>
-                <td @if($order_by == 'display_name') class="active" @endif>{{ $item->display_name }}</td>
-                <td @if($order_by == 'description') class="active" @endif>{{ $item->description }}</td>
+                <td @if($order_by == 'emaile') class="active" @endif>{{ $item->email }}</td>
                 <td class="text-right">
                   <div class="btn-group">
                     <a href="{{ url('/users/show/' . $item->id) }}" class="btn btn-default btn-sm" title="{{trans('users.View')}} Roles"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> {{trans('users.View')}}</a>
