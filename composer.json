@@ -12,7 +12,8 @@
         "laravelcollective/html": "^5.4",
         "caffeinated/modules": "^4.1",
         "caffeinated/menus": "^3.0",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "5.2.x-dev",
+        "rap2hpoutre/laravel-log-viewer": "^0.8.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -18,7 +18,6 @@ class MenuMiddleware
     public function handle($request, Closure $next)
     {
         Menu::make('example', function(Builder $menu) {
-			$menu->add('Relatorios', 'relatorios');
 			$menu->add('Saidas', 'saidas');
 			$menu->add('Macula', 'macula');
 			$menu->add('Lancamentos', 'lancamentos');

@@ -167,6 +167,7 @@ return [
         Caffeinated\Modules\ModulesServiceProvider::class,
         Caffeinated\Menus\MenusServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
         /*
          * Package Service Providers...

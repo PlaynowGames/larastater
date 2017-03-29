@@ -36,3 +36,5 @@ Route::get('/users/edit/{id}', 'UserController@edit');
 Route::patch('/users/update/{id}', 'UserController@update');
 Route::post('/users/store', 'UserController@store');
 Route::delete('/users/delete/{id}', 'UserController@destroy');
+
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
