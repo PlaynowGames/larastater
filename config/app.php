@@ -162,7 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Goszowski\CrudGeneratorAdminLte\CrudGeneratorAdminLteServiceProvider::class,
+        PlaynowGames\CrudGeneratorAdminLte\CrudGeneratorAdminLteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Caffeinated\Modules\ModulesServiceProvider::class,
         Caffeinated\Menus\MenusServiceProvider::class,
