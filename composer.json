@@ -46,6 +46,7 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+			"mkdir \"bootstrap/cache\"",
 			"php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
 			"php artisan key:generate",
             "php artisan optimize",
